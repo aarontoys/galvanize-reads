@@ -14,10 +14,10 @@
         <div class="col-md-10">
           <div class="row">
             <div class="col-md-3">
-              <img src="{{book.cover_img}}" width="100%">
+              <a href="books/{{ book.id }}"><img src="{{book.cover_img}}" width="100%"></a>
             </div>
             <div class="col-md-9">
-              <h3>{{ book.title }}</h3>
+              <a href="books/{{ book.id }}"><h3>{{ book.title }}</h3></a>
               <h4>By: </h4>
               <p>{{ book.description }}</p>
             </div>

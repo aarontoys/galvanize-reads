@@ -7,6 +7,11 @@ function getAllBooks () {
   return Books();
 }
 
+function getSingleBook (id) {
+  return Books().where('id', id);
+}
+
 module.exports = {
   getAllBooks: getAllBooks,
+  getSingleBook: getSingleBook
 }
