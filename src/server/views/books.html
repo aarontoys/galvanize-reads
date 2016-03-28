@@ -5,26 +5,31 @@
 
 {% block content %}
 
-  <!-- <div class="sidebar">
-    <p>here's some text</p> -->
-  <!-- </div> -->
     <div class="container">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 left-sidebar">
           <p>Test</p>
         </div>
-        <div class="col-md-4">
-
-      <!-- <p>Welcome to {{ title }}</p> -->
-
-          <a href="/books"><img src="http://placehold.it/300x150/0000FF?text=books"></a>
-        </div> <!-- col-md-6 -->
-        <div class="col-md-4">
-          <a href="/authors"><img src="http://placehold.it/300x150/008000?text=authors"></a>
-        </div> <!-- col-md-6 -->
-
+        {% for book in books %}
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-3">
+              <img src="{{book.cover_img}}" width="100%">
+            </div>
+            <div class="col-md-9">
+              <h3>{{ book.title }}</h3>
+              <h4>By: </h4>
+              <p>{{ book.description }}</p>
+            </div>
+          </div> <!-- row -->
+          <div class="row">
+            <div class="col-md-12">
+              <hr>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
       </div> <!-- row -->
     </div> <!-- container -->
-    <!-- </div> -->
 
 {% endblock %}
