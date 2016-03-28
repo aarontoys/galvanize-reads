@@ -16,6 +16,28 @@ router.get('/', function (req, res, next) {
     });
 });
 
+router.get('/new', function (req, res, next) {
+  res.render('new_book', {
+    title: 'Galvanize Reads',
+    subtitle: 'Add Book'
+  })
+})
+
+router.post('/new', function (req, res, next) {
+  var title = req.body.title;
+  var genre = req.body.genre;
+  var desc = req.body.description;
+  var cover_img = req.body.cover_img;
+
+  queries.addBook(title, genre, desc, cover_img)
+    .then(function () {
+      res.redirect('/books');
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+});
+
 router.get('/:id', function (req, res, next) {
   queries.getSingleBook(req.params.id)
     .then(function (book) {
@@ -29,5 +51,6 @@ router.get('/:id', function (req, res, next) {
       return next(err);
     });
 });
+
 
 module.exports = router;

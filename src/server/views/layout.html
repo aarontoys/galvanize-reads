@@ -9,6 +9,11 @@
   <body>
     <a href="/"><img src="https://avatars1.githubusercontent.com/u/3484345?v=3&s=50"></a>
     <h1>{{ title }}: {{ subtitle}}</h1>
+    <div class="pull-right">
+      <a href="/books/new"><button class="btn btn-success">Add Book</button></a>
+      <a href="/authors/new"><button class="btn btn-success">Add Author</button></a>
+    </div
+
     {% block content %}
     {% endblock %}
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>

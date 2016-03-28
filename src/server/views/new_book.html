@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form action="/books/new" method="post">
+          Title:<br><input type="text" name="title" required><br>
+          Genre:<br><input type="text" name="genre" required><br>
+          Cover Image Url:<br><input type="text" name="cover_img" required><br>
+          Description:<br><textarea name="description" required></textarea><br>
+          Author(s):<br><textarea name="author" required></textarea><button>Remove</button><br>
+          <select>
+            <option></option>
+          </select>
+          <button>Add Author</button>
+          <input type="submit" name="Add Book">
+        </form>
+        
+      </div> <!-- col-md-12 -->
+
+    </div> <!-- row -->
+  </div> <!-- container -->
+
+{% endblock %}

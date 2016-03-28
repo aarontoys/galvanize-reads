@@ -11,7 +11,17 @@ function getSingleBook (id) {
   return Books().where('id', id);
 }
 
+function addBook (title, genre, description, cover_img) {
+  return Books().insert({
+    title: title,
+    genre: genre,
+    description: description,
+    cover_img: cover_img
+  });
+}
+
 module.exports = {
   getAllBooks: getAllBooks,
-  getSingleBook: getSingleBook
+  getSingleBook: getSingleBook,
+  addBook: addBook
 }
