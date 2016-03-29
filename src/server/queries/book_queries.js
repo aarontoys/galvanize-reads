@@ -25,9 +25,20 @@ function removeBook (id) {
   return Books().where('id', id).update({deleted: true});
 }
 
+function updateBook (id, title, genre, description, cover_img) {
+    return Books().where('id', id)
+    .update({
+      title: title,
+      genre: genre,
+      description: description,
+      cover_img: cover_img,
+  });
+}
+
 module.exports = {
   getAllBooks: getAllBooks,
   getSingleBook: getSingleBook,
   addBook: addBook,
-  removeBook: removeBook
+  removeBook: removeBook,
+  updateBook: updateBook
 }

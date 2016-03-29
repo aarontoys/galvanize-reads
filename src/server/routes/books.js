@@ -52,6 +52,37 @@ router.get('/:id', function (req, res, next) {
     });
 });
 
+router.get('/edit/:id', function (req, res, next) {
+  queries.getSingleBook(req.params.id)
+    .then(function (book) {
+      res.render('edit_book', {
+        title: 'Galvanize Reads',
+        subtitle: 'Edit Book',
+        books: book[0]
+      });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+});
+
+router.post('/edit/:id', function (req, res, next) {
+  var title = req.body.title;
+  var genre = req.body.genre;
+  var desc = req.body.description;
+  var cover_img = req.body.cover_img;
+  var id = req.params.id;
+
+  console.log(id, title);
+  queries.updateBook(id, title, genre, desc, cover_img)
+    .then(function () {
+      res.redirect('/books');
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+});
+
 router.get('/remove/:id', function (req, res, next) {
   queries.getSingleBook(req.params.id)
   .then(function (book) {
