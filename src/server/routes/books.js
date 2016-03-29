@@ -52,5 +52,28 @@ router.get('/:id', function (req, res, next) {
     });
 });
 
+router.get('/remove/:id', function (req, res, next) {
+  queries.getSingleBook(req.params.id)
+  .then(function (book) {
+    res.render('books_remove', {
+      title: 'Galvanize Reads',
+      subtitle: 'Remove Single Book',
+      books: book
+    });
+  })
+  .catch(function (err) {
+    return next(err);
+  });
+});
+
+router.post('/remove/:id', function (req, res, next) {
+  queries.removeBook(req.params.id)
+    .then(function () {
+      res.redirect('/books');
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+});
 
 module.exports = router;

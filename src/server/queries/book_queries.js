@@ -21,8 +21,13 @@ function addBook (title, genre, description, cover_img) {
   });
 }
 
+function removeBook (id) {
+  return Books().where('id', id).update({deleted: true});
+}
+
 module.exports = {
   getAllBooks: getAllBooks,
   getSingleBook: getSingleBook,
-  addBook: addBook
+  addBook: addBook,
+  removeBook: removeBook
 }
