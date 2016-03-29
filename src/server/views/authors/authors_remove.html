@@ -26,8 +26,13 @@
                   <a href="authors/remove/{{ author.id }}"><button class="btn btn-danger">Remove</button></a>
                 </div>
               </div>
-              <br>
-              <h4>By: </h4>
+              <h4>Titles: 
+                {% for book in books %}
+                  {% if author.id == book.author_id %}
+                    <a class="authors" href="/books/{{ book.id }}">{{ book.title }}</a>
+                  {% endif %}
+                {% endfor %}
+              </h4>
               <p>{{ author.bio }}</p>
             </div>
           </div> <!-- row -->

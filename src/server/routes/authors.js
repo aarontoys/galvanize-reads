@@ -4,11 +4,19 @@ var queries = require('../queries/author_queries');
 
 router.get('/', function (req, res, next) {
   queries.getAllAuthors()
-    .then(function (authors) {
-       res.render('authors/authors', { 
-          title: 'Galvanize Reads', 
-          subtitle: 'authors',
-          authors: authors,
+    .then(function (authors){
+      queries.getAuthorBooks()
+        .then(function (books) {
+          console.log('books: ', books);
+          res.render('authors/authors', { 
+            title: 'Galvanize Reads', 
+            subtitle: 'Authors',
+            books: books,
+            authors: authors
+          });
+        })
+        .catch(function (err) {
+          return next(err);
         });
     })
     .catch(function (err) {
@@ -42,12 +50,20 @@ router.post('/new', function (req, res, next) {
 
 router.get('/:id', function (req, res, next) {
   queries.getSingleAuthor(req.params.id)
-    .then(function (author) {
-      res.render('authors/authors', {
-        title: 'Galvanize Reads',
-        subtitle: 'Single Author',
-        authors: author
-      });
+    .then(function (author){
+      queries.getAuthorBooks()
+        .then(function (books) {
+          console.log('books: ', books);
+          res.render('authors/authors', { 
+            title: 'Galvanize Reads', 
+            subtitle: 'Single Author',
+            books: books,
+            authors: author
+          });
+        })
+        .catch(function (err) {
+          return next(err);
+        });
     })
     .catch(function (err) {
       return next(err);
@@ -86,16 +102,34 @@ router.post('/edit/:id', function (req, res, next) {
 
 router.get('/remove/:id', function (req, res, next) {
   queries.getSingleAuthor(req.params.id)
-  .then(function (author) {
-    res.render('authors/authors_remove', {
-      title: 'Galvanize Reads',
-      subtitle: 'Remove Single Author',
-      authors: author
+    .then(function (author){
+      queries.getAuthorBooks()
+        .then(function (books) {
+          console.log('books: ', books);
+          res.render('authors/authors_remove', { 
+            title: 'Galvanize Reads', 
+            subtitle: 'Remove Single Author',
+            books: books,
+            authors: author
+          });
+        })
+        .catch(function (err) {
+          return next(err);
+        });
+    })
+    .catch(function (err) {
+      return next(err);
     });
-  })
-  .catch(function (err) {
-    return next(err);
-  });
+  // .then(function (author) {
+  //   res.render('authors/authors_remove', {
+  //     title: 'Galvanize Reads',
+  //     subtitle: 'Remove Single Author',
+  //     authors: author
+  //   });
+  // })
+  // .catch(function (err) {
+  //   return next(err);
+  // });
 });
 
 router.post('/remove/:id', function (req, res, next) {

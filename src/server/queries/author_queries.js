@@ -35,10 +35,16 @@ function updateAuthor (id, fname, lname, bio, img) {
   });
 }
 
+function getAuthorBooks () {
+  return knex('books_authors')
+    .innerJoin('books', 'books_authors.book_id', 'books.id')
+}
+
 module.exports = {
   getAllAuthors: getAllAuthors,
   getSingleAuthor: getSingleAuthor,
   addAuthor: addAuthor,
   removeAuthor: removeAuthor,
-  updateAuthor: updateAuthor
+  updateAuthor: updateAuthor,
+  getAuthorBooks: getAuthorBooks
 }
