@@ -36,7 +36,7 @@ function updateBook (id, title, genre, description, cover_img) {
   });
 }
 
-function getBookAuthors (argument) {
+function getBookAuthors () {
   return knex('books_authors')
     .innerJoin('authors', 'books_authors.author_id', 'authors.id');
 }

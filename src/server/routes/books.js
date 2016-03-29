@@ -102,7 +102,7 @@ router.get('/remove/:id', function (req, res, next) {
     .then(function (book){
         queries.getBookAuthors()
           .then(function (authors) {
-            res.render('books/books', { 
+            res.render('books/books_remove', { 
               title: 'Galvanize Reads', 
               subtitle: 'Single Books',
               books: book,
