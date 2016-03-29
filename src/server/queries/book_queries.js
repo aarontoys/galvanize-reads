@@ -4,11 +4,11 @@ var Books = function () {
 };
 
 function getAllBooks () {
-  return Books();
+  return Books().whereNot('deleted', true);
 }
 
 function getSingleBook (id) {
-  return Books().where('id', id);
+  return Books().where('id', id).andWhereNot('deleted', true);
 }
 
 function addBook (title, genre, description, cover_img) {
@@ -16,7 +16,8 @@ function addBook (title, genre, description, cover_img) {
     title: title,
     genre: genre,
     description: description,
-    cover_img: cover_img
+    cover_img: cover_img,
+    deleted: false
   });
 }
 
