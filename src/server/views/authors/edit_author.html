@@ -1,0 +1,29 @@
+{% extends '../layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form action="/authors/edit/{{authors.id}}" method="post">
+          First Name:<br><input type="text" name="fname" value="{{authors.fname}}", required><br>
+          Last Name:<br><input type="text" name="lname" value="{{authors.lname}}", required><br>
+          Profile Image Url:<br><input type="text" name="img" value="{{ authors.img}}", required><br>
+          Bio:<br><textarea name="bio" required>{{ authors.bio }}</textarea><br>
+          Author(s):<br><textarea name="author" required></textarea><button>Remove</button><br>
+          <select>
+            <option></option>
+          </select>
+          <button>Add Author</button>
+          <input type="submit" name="Add Author">
+        </form>
+        
+      </div> <!-- col-md-12 -->
+
+    </div> <!-- row -->
+  </div> <!-- container -->
+
+{% endblock %}

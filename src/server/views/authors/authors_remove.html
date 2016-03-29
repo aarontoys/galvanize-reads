@@ -1,0 +1,49 @@
+{% extends '../layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <p>Test</p>
+        </div>
+        <div class="col-md-10">
+        {% for author in authors %}
+          <div class="row">
+            <div class="col-md-3">
+              <a href="authors/{{ author.id }}"><img src="{{author.img}}" width="100%"></a>
+            </div>
+            <div class="col-md-9">
+              <div class="row">
+                <div class="col-md-9">
+                  <a href="authors/{{ author.id }}"><h3>{{ author.fname }}</h3></a>
+                </div>
+                <div class="col-md-3 pull-right">
+                  <a href="authors/edit/{{ author.id }}"> <button class="btn btn-success">Edit</button></a>
+                  <a href="authors/remove/{{ author.id }}"><button class="btn btn-danger">Remove</button></a>
+                </div>
+              </div>
+              <br>
+              <h4>By: </h4>
+              <p>{{ author.bio }}</p>
+            </div>
+          </div> <!-- row -->
+          <div class="row">
+            <div class="col-md-12">
+              <hr>
+            </div>
+            <div class="col-md-4 col-md-offset-4">
+              <form action="/authors/remove/{{ author.id }}" method="post">
+                <button class="btn btn-danger btn-block">Remove Author</button>
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+        </div> <!-- col-md-10 -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+
+{% endblock %}
