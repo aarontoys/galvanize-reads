@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends '../layout.html' %}
 
 {% block title %}{% endblock %}
 
@@ -8,11 +8,11 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <form action="/books/edit/{{books.id}}" method="post">
-          Title:<br><input type="text" name="title" value="{{books.title}}", required><br>
-          Genre:<br><input type="text" name="genre" value="{{books.genre}}", required><br>
-          Cover Image Url:<br><input type="text" name="cover_img" value="{{ books.cover_img}}", required><br>
-          Description:<br><textarea name="description" required>{{ books.description }}</textarea><br>
+        <form action="/books/new" method="post">
+          Title:<br><input type="text" name="title" required><br>
+          Genre:<br><input type="text" name="genre" required><br>
+          Cover Image Url:<br><input type="text" name="cover_img" required><br>
+          Description:<br><textarea name="description" required></textarea><br>
           Author(s):<br><textarea name="author" required></textarea><button>Remove</button><br>
           <select>
             <option></option>

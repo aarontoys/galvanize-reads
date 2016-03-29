@@ -5,7 +5,7 @@ var queries = require('../queries/book_queries');
 router.get('/', function (req, res, next) {
   queries.getAllBooks()
     .then(function (books) {
-       res.render('books', { 
+       res.render('books/books', { 
           title: 'Galvanize Reads', 
           subtitle: 'Books',
           books: books,
@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/new', function (req, res, next) {
-  res.render('new_book', {
+  res.render('books/new_book', {
     title: 'Galvanize Reads',
     subtitle: 'Add Book'
   })
@@ -41,7 +41,7 @@ router.post('/new', function (req, res, next) {
 router.get('/:id', function (req, res, next) {
   queries.getSingleBook(req.params.id)
     .then(function (book) {
-      res.render('books', {
+      res.render('books/books', {
         title: 'Galvanize Reads',
         subtitle: 'Single Book',
         books: book
@@ -55,7 +55,7 @@ router.get('/:id', function (req, res, next) {
 router.get('/edit/:id', function (req, res, next) {
   queries.getSingleBook(req.params.id)
     .then(function (book) {
-      res.render('edit_book', {
+      res.render('books/edit_book', {
         title: 'Galvanize Reads',
         subtitle: 'Edit Book',
         books: book[0]
@@ -86,7 +86,7 @@ router.post('/edit/:id', function (req, res, next) {
 router.get('/remove/:id', function (req, res, next) {
   queries.getSingleBook(req.params.id)
   .then(function (book) {
-    res.render('books_remove', {
+    res.render('books/books_remove', {
       title: 'Galvanize Reads',
       subtitle: 'Remove Single Book',
       books: book
