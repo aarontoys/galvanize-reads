@@ -19,7 +19,18 @@ function addBook (title, genre, description, cover_img) {
     description: description,
     cover_img: cover_img,
     deleted: false
+  },'id');
+}
+
+function addBookAuthors (bookId, arr) {
+  var insertPromises = arr.map(function (id) {
+    return knex('books_authors').insert({
+      book_id: parseInt(bookId[0]),
+      author_id: id
+    })
   });
+
+  return Promise.all(insertPromises);
 }
 
 function removeBook (id) {
@@ -47,5 +58,6 @@ module.exports = {
   addBook: addBook,
   removeBook: removeBook,
   updateBook: updateBook,
-  getBookAuthors: getBookAuthors
+  getBookAuthors: getBookAuthors,
+  addBookAuthors: addBookAuthors
 }
