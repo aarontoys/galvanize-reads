@@ -12,3 +12,6 @@ h1 {
   vertical-align: middle;
 }
 
+.authors:not(:last-child):after {
+  content: ',';
+}

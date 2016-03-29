@@ -4,7 +4,8 @@ var Books = function () {
 };
 
 function getAllBooks () {
-  return Books().whereNot('deleted', true);
+  return Books()
+    .whereNot('deleted', true)
 }
 
 function getSingleBook (id) {
@@ -35,10 +36,16 @@ function updateBook (id, title, genre, description, cover_img) {
   });
 }
 
+function getBookAuthors (argument) {
+  return knex('books_authors')
+    .innerJoin('authors', 'books_authors.author_id', 'authors.id');
+}
+
 module.exports = {
   getAllBooks: getAllBooks,
   getSingleBook: getSingleBook,
   addBook: addBook,
   removeBook: removeBook,
-  updateBook: updateBook
+  updateBook: updateBook,
+  getBookAuthors: getBookAuthors
 }
