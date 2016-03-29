@@ -7,11 +7,11 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-2 left-sidebar">
+        <div class="col-md-2">
           <p>Test</p>
         </div>
-        {% for book in books %}
         <div class="col-md-10">
+        {% for book in books %}
           <div class="row">
             <div class="col-md-3">
               <a href="books/{{ book.id }}"><img src="{{book.cover_img}}" width="100%"></a>
@@ -36,8 +36,8 @@
               <hr>
             </div>
           </div>
-        </div>
         {% endfor %}
+        </div>
       </div> <!-- row -->
     </div> <!-- container -->
 
