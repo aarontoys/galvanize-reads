@@ -14,16 +14,16 @@
         {% for author in authors %}
           <div class="row">
             <div class="col-md-3">
-              <a href="authors/{{ author.id }}"><img src="{{author.img}}" width="100%"></a>
+              <a href="/authors/{{ author.id }}"><img src="{{author.img}}" width="100%"></a>
             </div>
             <div class="col-md-9">
                <div class="row">
               <div class="col-md-9">
-              <a href="authors/{{ author.id }}"><h3>{{ author.fname }} {{ author.lname }}</h3></a>
+              <a href="/authors/{{ author.id }}"><h3>{{ author.fname }} {{ author.lname }}</h3></a>
               </div>
               <div class="col-md-3 pull-right">
-                <a href="authors/edit/{{ author.id }}"> <button class="btn btn-success">Edit</button></a>
-                <a href="authors/remove/{{ author.id }}"><button class="btn btn-danger">Remove</button></a>
+                <a href="/authors/edit/{{ author.id }}"> <button class="btn btn-success">Edit</button></a>
+                <a href="/authors/remove/{{ author.id }}"><button class="btn btn-danger">Remove</button></a>
               </div>
               </div>
               <br>
