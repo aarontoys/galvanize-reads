@@ -13,14 +13,12 @@
           Genre:<br><input type="text" name="genre" required><br>
           Cover Image Url:<br><input type="text" name="cover_img" required><br>
           Description:<br><textarea name="description" required></textarea><br>
-          Author(s):<br><!-- <select id="selectedAuthors" name="authors" required multiple width="100px"></select><button type="button" id="removeAuthors">Remove</button><br> -->
+          Author(s):<br>
           <select name="authors" id="allAuthors" multiple>
-            <!-- <option disabled selected>Select</option> -->
             {% for author in authors %}
               <option value="{{author.id}}">{{author.fname}} {{author.lname}}</option>
             {% endfor %}
           </select>
-          <!-- <button type="button" id="addAuthors">Add Author</button> -->
           <input type="submit" name="Add Book">
         </form>
         

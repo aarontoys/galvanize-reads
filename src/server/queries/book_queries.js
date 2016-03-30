@@ -29,7 +29,6 @@ function addBookAuthors (bookId, arr) {
       author_id: id
     })
   });
-
   return Promise.all(insertPromises);
 }
 
@@ -47,10 +46,22 @@ function updateBook (id, title, genre, description, cover_img) {
   });
 }
 
-function getBookAuthors () {
+function getBookAuthors (id) {
+  if(id) {
+    var min = id;
+    var max = id;
+  } else {
+    min = 1;
+    max = knex('books_authors').max('book_id');
+  }
+  console.log('min: ',min);
+  console.log('max: ',max);
+
   return knex('books_authors')
-    .innerJoin('authors', 'books_authors.author_id', 'authors.id');
-}
+    // .distinct('authors.id','authors.fname','authors.lname'/*,'books_authors.book_id'*/)
+    .innerJoin('authors', 'books_authors.author_id', 'authors.id')
+    .whereBetween('books_authors.book_id',[min,max])
+} 
 
 module.exports = {
   getAllBooks: getAllBooks,

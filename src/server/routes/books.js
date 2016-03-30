@@ -62,7 +62,7 @@ router.post('/new', function (req, res, next) {
 router.get('/:id', function (req, res, next) {
   book_queries.getSingleBook(req.params.id)
     .then(function (book){
-      book_queries.getBookAuthors()
+      return book_queries.getBookAuthors()
         .then(function (authors) {
           res.render('books/books', { 
             title: 'Galvanize Reads', 
@@ -83,11 +83,26 @@ router.get('/:id', function (req, res, next) {
 router.get('/edit/:id', function (req, res, next) {
   book_queries.getSingleBook(req.params.id)
     .then(function (book) {
-      res.render('books/edit_book', {
-        title: 'Galvanize Reads',
-        subtitle: 'Edit Book',
-        books: book[0]
-      });
+      return author_queries.getAllAuthors()
+        .then(function (authors) {
+          return book_queries.getBookAuthors(req.params.id)
+            .then(function (bookAuthors) {
+              console.log('bookAuthors: ',bookAuthors.length);
+              res.render('books/edit_book', {
+                title: 'Galvanize Reads',
+                subtitle: 'Edit Book',
+                books: book[0],
+                authors: authors,
+                bookAuthors: bookAuthors
+              });
+            })
+            .catch(function (err){
+              return next (err);
+            });
+        })
+        .catch(function (err) {
+          return next(err);
+        });
     })
     .catch(function (err) {
       return next(err);
@@ -151,5 +166,12 @@ router.post('/remove/:id', function (req, res, next) {
       return next(err);
     });
 });
+
+router.get('/ajax/:id', function (req, res, next) {
+  book_queries.getBookAuthors(req.params.id)
+    .then(function (result) {
+      res.send(result);
+    })
+})
 
 module.exports = router;

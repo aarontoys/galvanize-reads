@@ -13,11 +13,19 @@
           Genre:<br><input type="text" name="genre" value="{{books.genre}}", required><br>
           Cover Image Url:<br><input type="text" name="cover_img" value="{{ books.cover_img}}", required><br>
           Description:<br><textarea name="description" required>{{ books.description }}</textarea><br>
-          Author(s):<br><textarea name="author" required></textarea><button>Remove</button><br>
-          <select>
-            <option></option>
+          Author(s):<br>
+          <select name="authors" id="allAuthors" multiple>
+            <!-- {% for author in authors %} -->
+              <!-- {% for bookAuthor in bookAuthors %} -->
+                <!-- {% if bookAuthor.author_id == author.id %} -->
+                  <!-- <option value="{{author.id}}" selected>{{author.fname}} {{author.lname}}</option>
+                {% endif %}
+ -->                 <option value="{{author.id}}">{{author.fname}} {{author.lname}}</option>
+              <!-- {% endfor %} -->
+
+            <!-- {% endfor %} -->
           </select>
-          <button>Add Author</button>
+          <!-- <button>Add Author</button> -->
           <input type="submit" name="Add Book">
         </form>
         
